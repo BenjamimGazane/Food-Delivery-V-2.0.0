@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - FoodDelivery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #C7353C;
+            --primary-red-hover: #D9363D;
+            --secondary-orange: #FF733C;
+            --secondary-orange-hover: #FF824E;
+            --background-light: #FCFBFB;
+            --text-dark: #2A2A2A;
+            --text-white: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--background-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 15px 0px;
+            display: flex;
+            align-items: center;
+        }
+
+        .signup-container {
+            background: var(--text-white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .signup-left {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+            color: var(--text-white);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-right {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .brand-slogan {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            margin-right: 10px;
+            font-weight: bold;
+            color: var(--secondary-orange);
+        }
+
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 0.2rem rgba(199, 53, 60, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-red-hover), var(--primary-red));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(199, 53, 60, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary-orange), var(--secondary-orange-hover));
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--secondary-orange-hover), var(--secondary-orange));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 115, 60, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider span {
+            background: var(--text-white);
+            padding: 0 1rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress {
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .step-active {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        /* MOBILE - CARD ÚNICO */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+                padding: 1rem;
+                background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+            }
+
+            .signup-container {
+                min-height: auto;
+                margin: 2rem 0;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Esconde completamente o lado esquerdo no mobile */
+            .signup-left {
+                display: none;
+            }
+
+            /* Lado direito ocupa 100% */
+            .signup-right {
+                padding: 2.5rem 2rem;
+                width: 100%;
+            }
+
+            /* Header do card mobile */
+            .mobile-header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .mobile-logo {
+                font-size: 2.2rem;
+                font-weight: bold;
+                color: var(--primary-red);
+                margin-bottom: 0.5rem;
+            }
+
+            .mobile-slogan {
+                color: var(--text-dark);
+                font-size: 1rem;
+                opacity: 0.8;
+            }
+
+            /* Ajustes no formulário */
+            .signup-right h2 {
+                font-size: 1.6rem;
+                color: var(--text-dark);
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            .signup-right p.text-muted {
+                text-align: center;
+                margin-bottom: 2rem;
+                font-size: 0.95rem;
+            }
+
+            .form-control {
+                padding: 14px 16px;
+                margin-bottom: 1.2rem;
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 14px 20px;
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            /* Divisor */
+            .divider {
+                margin: 1.5rem 0;
+            }
+
+            .divider span {
+                background: var(--text-white);
+                font-size: 0.85rem;
+            }
+
+            /* Botões sociais */
+            .btn-outline-secondary {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Links do footer */
+            .footer-links {
+                margin-top: 1.5rem;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 0.5rem 0;
+                font-size: 0.85rem;
+            }
+
+            /* Seção de login estratégica */
+            .login-section {
+                background: var(--background-light);
+                border: 1px solid #e9ecef;
+                padding: 1.5rem;
+                border-radius: 10px;
+                text-align: center;
+                margin-top: 2rem;
+            }
+
+            .login-section p {
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .login-section .btn {
+                font-weight: 600;
+            }
+
+            /* Progress bar mobile */
+            .progress-container {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Ajustes para telas muito pequenas */
+        @media (max-width: 576px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .signup-right {
+                padding: 2rem 1.5rem;
+            }
+
+            .mobile-logo {
+                font-size: 2rem;
+            }
+
+            .signup-right h2 {
+                font-size: 1.4rem;
+            }
+
+            .form-control {
+                padding: 12px 14px;
+            }
+
+            .login-section {
+                padding: 1.2rem;
+            }
+        }
+
+        /* Desktop - mantém layout original */
+        @media (min-width: 769px) {
+            .mobile-header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="signup-container">
+                    <div class="row g-0">
+                        <!-- Lado Esquerdo - Branding e Informações (visível apenas no desktop) -->
+                        <div class="col-lg-6 signup-left">
+                            <div class="brand-logo">FoodDelivery</div>
+                            <p class="brand-slogan">Junte-se a milhares de clientes satisfeitos</p>
+                            
+                            <ul class="feature-list">
+                                <li>Entrega rápida em até 30 minutos</li>
+                                <li>Mais de 500 restaurantes parceiros</li>
+                                <li>Ofertas exclusivas para membros</li>
+                                <li>Pagamento 100% seguro</li>
+                                <li>Acompanhamento em tempo real</li>
+                            </ul>
+                            
+                            <div class="mt-4">
+                                <small>Já tem uma conta?</small>
+                                <button class="btn btn-secondary w-100 mt-2" onclick="window.location.href='login.html'">
+                                    Fazer Login
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Lado Direito - Formulário de Cadastro -->
+                        <div class="col-lg-6 signup-right">
+                            <!-- Header mobile (visível apenas no mobile) -->
+                            <div class="mobile-header">
+                                <div class="mobile-logo">FoodDelivery</div>
+                                <p class="mobile-slogan">Crie sua conta em poucos passos</p>
+                            </div>
+
+                            <h2 class="mb-3">Criar Conta</h2>
+                            <p class="text-muted mb-4">Preencha seus dados para começar</p>
+                            
+                            <!-- Indicador de Progresso -->
+                            <div class="progress-container">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 33%" id="progressBar"></div>
+                                </div>
+                                <div class="step-indicator">
+                                    <span class="step-active" id="step1Indicator">Dados Pessoais</span>
+                                    <span id="step2Indicator">Endereço</span>
+                                    <span id="step3Indicator">Senha</span>
+                                </div>
+                            </div>
+                            
+                            <form id="signupForm">
+                                <!-- Passo 1: Dados Pessoais -->
+                                <div class="form-step active" id="step1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Nome" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Sobrenome" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="E-mail" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <input type="tel" class="form-control" placeholder="Telefone" required>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <div></div> <!-- Espaço vazio para alinhar o botão à direita -->
+                                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                                            Continuar <i class="fas fa-arrow-right ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Passo 2: Endereço -->
+                                <div class="form-step" id="step2">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Rua" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Número" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Bairro" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Cidade" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-outline-secondary" style="height: 52px;" onclick="prevStep(1)">
+                                            <i class="fas fa-arrow-left me-2"></i> Voltar
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+                                            Continuar <i class="fas fa-arrow-right ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Passo 3: Senha -->
+                                <div class="form-step" id="step3">
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Senha" required>
+                                        <div class="form-text">Mínimo de 8 caracteres</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control" placeholder="Confirmar Senha" required>
+                                    </div>
+                                    
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                        <label class="form-check-label" for="termsCheck">
+                                            Concordo com os <a href="#" style="color: var(--primary-red);">Termos de Uso</a> e <a href="#" style="color: var(--primary-red);">Política de Privacidade</a>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="newsletterCheck">
+                                        <label class="form-check-label" for="newsletterCheck">
+                                            Desejo receber ofertas e novidades por e-mail
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-outline-secondary" style="height: 52px;" onclick="prevStep(2)">
+                                            <i class="fas fa-arrow-left me-2"></i> Voltar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            Criar Conta
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="divider">
+                                <span>ou cadastre-se com</span>
+                            </div>
+                            
+                            <div class="row g-2 mb-4">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary w-100">
+                                        <i class="fab fa-google"></i> Google
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary w-100">
+                                        <i class="fab fa-facebook-f"></i> Facebook
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="footer-links">
+                                <a href="#">Termos de Uso</a>
+                                <a href="#">Política de Privacidade</a>
+                                <a href="#">Ajuda</a>
+                            </div>
+
+                            <!-- Seção de login estratégica (visível apenas no mobile) -->
+                            <div class="login-section d-lg-none">
+                                <p>Já tem uma conta?</p>
+                                <button class="btn btn-outline-primary w-100"  onclick="window.location.href='login.html'">
+                                    Fazer Login
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Controle dos passos do formulário
+        let currentStep = 1;
+        
+        function nextStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Atualiza indicador de progresso
+            document.getElementById(`step${currentStep}Indicator`).classList.remove('step-active');
+            document.getElementById(`step${step}Indicator`).classList.add('step-active');
+            
+            // Atualiza barra de progresso
+            const progressPercentage = (step / 3) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+            
+            currentStep = step;
+        }
+        
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Atualiza indicador de progresso
+            document.getElementById(`step${currentStep}Indicator`).classList.remove('step-active');
+            document.getElementById(`step${step}Indicator`).classList.add('step-active');
+            
+            // Atualiza barra de progresso
+            const progressPercentage = (step / 3) * 100;
+            document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+            
+            currentStep = step;
+        }
+        
+        // Validação do formulário
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            alert('Conta criada com sucesso! Redirecionando...');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

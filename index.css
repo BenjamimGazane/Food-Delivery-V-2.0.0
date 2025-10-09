@@ -1,0 +1,776 @@
+     /* ===== VARIÁVEIS DE CORES ===== */
+:root {
+    --primary-red: #C7353C;
+    --primary-red-hover: #D9363D;
+    --secondary-orange: #FF733C;
+    --secondary-orange-hover: #FF824E;
+    --background-light: #FCFBFB;
+    --background-light-alt: #F9F9F9;
+    --text-dark: #2A2A2A;
+    --text-black: #000000;
+    --text-white: #FFFFFF;
+    --text-gray: #6c757d;
+    --border-light: #e9ecef;
+}
+
+/* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER E NAVBAR ===== */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(199, 53, 60, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-white) !important;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-white) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ===== HERO SECTION COM CARROSSEL ===== */
+.hero-section {
+    margin-top: 76px;
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover .carousel-image {
+    transform: scale(1.05);
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+.carousel-caption h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease;
+}
+
+.carousel-caption p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+/* ===== BOTÕES ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-white);
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(199, 53, 60, 0.3);
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-red-hover), var(--primary-red));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(199, 53, 60, 0.4);
+    color: var(--text-white);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--secondary-orange), var(--secondary-orange-hover));
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-white);
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 115, 60, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--secondary-orange-hover), var(--secondary-orange));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 115, 60, 0.4);
+    color: var(--text-white);
+}
+/* ===== CARDS DE COMIDA ===== */
+.food-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.food-card {
+    background: var(--text-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.food-card-image {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.food-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.food-card:hover .food-card-img {
+    transform: scale(1.1);
+}
+
+.food-card-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, var(--secondary-orange), var(--secondary-orange-hover));
+    color: var(--text-white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.food-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(199, 53, 60, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.food-card:hover .food-card-overlay {
+    opacity: 1;
+}
+
+.btn-add-to-cart {
+    background: var(--text-white);
+    color: var(--primary-red);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+}
+
+.food-card:hover .btn-add-to-cart {
+    transform: translateY(0);
+}
+
+.btn-add-to-cart:hover {
+    background: var(--text-dark);
+    color: var(--text-white);
+    transform: scale(1.05);
+}
+
+.food-card-content {
+    padding: 1.5rem;
+    position: relative;
+    background: var(--text-white);
+}
+
+.food-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.food-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    line-height: 1.3;
+    flex: 1;
+}
+
+.food-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.rating-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.food-card-restaurant {
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.food-card-restaurant i {
+    margin-right: 5px;
+}
+
+.food-card-description {
+    color: var(--text-gray);
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.food-card-footer {
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+}
+
+.food-card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.food-card-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-red);
+}
+
+.food-card-delivery {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ===== CARDS DE RESTAURANTES ===== */
+.restaurant-card {
+    background: var(--text-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.restaurant-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover .restaurant-img {
+    transform: scale(1.1);
+}
+
+.restaurant-card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    color: var(--text-white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.restaurant-card-content {
+    padding: 1.5rem;
+}
+
+.restaurant-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.restaurant-category {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.restaurant-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.restaurant-rating span {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.restaurant-delivery {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ===== ESTILOS PARA AS ESTRELAS DE AVALIAÇÃO ===== */
+.fa-star, .fa-star-half-alt {
+    font-size: 0.9rem;
+}
+
+/* ===== BOTÕES PERSONALIZADOS ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    color: var(--text-white);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(199, 53, 60, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-red-hover), var(--primary-red));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(199, 53, 60, 0.4);
+    color: var(--text-white);
+}
+
+/* ===== ANIMAÇÕES ESPECÍFICAS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.food-card, .restaurant-card {
+    animation: fadeInUp 0.6s ease;
+}
+
+.food-card:nth-child(2) { animation-delay: 0.1s; }
+.food-card:nth-child(3) { animation-delay: 0.2s; }
+.food-card:nth-child(4) { animation-delay: 0.3s; }
+.food-card:nth-child(5) { animation-delay: 0.4s; }
+.food-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* ===== RESPONSIVIDADE PARA OS CARDS ===== */
+@media (max-width: 768px) {
+    .food-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .food-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .food-card-rating {
+        margin-left: 0;
+        margin-top: 0.3rem;
+    }
+    
+    .food-card-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .restaurant-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .food-cards {
+         grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .food-card-image {
+        height: 200px;
+    }
+    
+    .restaurant-card-image {
+        height: 180px;
+    }
+}
+
+/* ===== ESTILOS PARA O SCROLL DA NAVBAR ===== */
+.navbar-scrolled {
+    background: rgba(199, 53, 60, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+/* ===== SEÇÃO DE DESTAQUES ===== */
+.featured-section {
+    padding: 5rem 0;
+    background-color: var(--background-light-alt);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-orange));
+    border-radius: 2px;
+}
+
+/* ===== CARDS DE COMIDA ===== */
+.food-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.food-card {
+    background: var(--text-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.food-card-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.food-card:hover .food-card-img {
+    transform: scale(1.1);
+}
+
+.food-card-content {
+    padding: 1.5rem;
+    position: relative;
+    background: var(--text-white);
+}
+
+.food-card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.food-card-description {
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.food-card-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-red);
+}
+
+/* ===== SEÇÃO DE BENEFÍCIOS ===== */
+.benefits-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--background-light), var(--background-light-alt));
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-red), var(--secondary-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.benefit-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.benefit-description {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--text-dark);
+    color: var(--text-white);
+    padding: 3rem 0 1rem;
+}
+
+.footer h5 {
+    color: var(--text-white);
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--text-white);
+}
+
+.footer-bottom {
+    border-top: 1px solid #495057;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    color: #adb5bd;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ===== CONTROLES DO CARROSSEL ===== */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    border: 2px solid var(--text-white);
+    background: transparent;
+}
+
+.carousel-indicators button.active {
+    background: var(--text-white);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 100vh;
+        min-height: 400px;
+    }
+    
+    .carousel-item {
+        height: 100vh;
+        min-height: 400px;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 2.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+    
+    .food-cards {
+        grid-template-columns: 1fr;
+    }
+
+    
+}

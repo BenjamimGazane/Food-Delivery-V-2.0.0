@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodDelivery - Os melhores sabores na sua casa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-utensils me-2"></i>FoodDelivery
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Restaurantes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Promoções</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-secondary" href="#">Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section com Carrossel -->
+    <section class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" class="carousel-image" alt="Pizza deliciosa">
+                    <div class="carousel-caption">
+                        <h1>Sabores que Encantam</h1>
+                        <p>Mais de 10 restaurantes com as melhores pizzas da cidade</p>
+                        <a href="login.html" class="btn-primary">Pedir Agora</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" class="carousel-image" alt="Hambúrguer suculento">
+                    <div class="carousel-caption">
+                        <h1>Hambúrgueres Irresistíveis</h1>
+                        <p>Combinações únicas que vão te surpreender</p>
+                        <a href="login.html" class="btn-primary">Descobrir</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" class="carousel-image" alt="Sushi fresco">
+                    <div class="carousel-caption">
+                        <h1>Culinária Internacional</h1>
+                        <p>Descubra sabores do mundo todo sem sair de casa</p>
+                        <a href="login.html" class="btn-primary">Explorar</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Seção de Destaques -->
+    <section class="featured-section">
+        <div class="container ">
+            <h2 class="section-title">Mais Pedidos</h2>
+            <div class="food-cards" id="foodCards">
+                <!-- Cards gerados dinamicamente pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Restaurantes em Destaque -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Restaurantes em Destaque</h2>
+            <div class="row" id="featuredRestaurants">
+                <!-- Restaurantes gerados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>FoodDelivery</h5>
+                    <p>Os melhores sabores entregues na sua porta.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links Rápidos</h5>
+                    <a href="#">Sobre Nós</a><br>
+                    <a href="#">Termos de Serviço</a><br>
+                    <a href="#">Política de Privacidade</a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contactos</h5>
+                    <p><i class="fas fa-phone me-2"></i> +258 84 XXX XXXX</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@fooddelivery.co.mz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodDelivery. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Dados dos produtos
+        const foodProducts = [
+            {
+                id: 1,
+                name: "Pizza Margherita Grande",
+                description: "Molho de tomate, mozzarella fresca, manjericão e azeite",
+                price: 650,
+                restaurant: "Pizza Italiana",
+                image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Pizza",
+                rating: 4.8,
+                deliveryTime: "30-40 min"
+            },
+            {
+                id: 2,
+                name: "Hambúrguer Clássico",
+                description: "Pão brioche, carne 180g, queijo, alface, tomate e molho especial",
+                price: 450,
+                restaurant: "Burger House",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Hambúrguer",
+                rating: 4.6,
+                deliveryTime: "25-35 min"
+            },
+            {
+                id: 3,
+                name: "Sushi Mix Premium",
+                description: "Selection de 16 peças: nigiri, sashimi e rolls especiais",
+                price: 1200,
+                restaurant: "Sushi Master",
+                image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Sushi",
+                rating: 4.9,
+                deliveryTime: "40-50 min"
+            },
+            {
+                id: 4,
+                name: "Frango Grelhado com Batatas",
+                description: "Frango grelhado temperado com ervas, batatas rústicas e salada",
+                price: 380,
+                restaurant: "Casa do Frango",
+                image: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Frango",
+                rating: 4.5,
+                deliveryTime: "35-45 min"
+            },
+            {
+                id: 5,
+                name: "Massas Carbonara",
+                description: "Espaguete com molho carbonara cremoso e bacon crocante",
+                price: 320,
+                restaurant: "Trattoria Bella",
+                image: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Massas",
+                rating: 4.7,
+                deliveryTime: "20-30 min"
+            },
+            {
+                id: 6,
+                name: "Tacos Mexicanos",
+                description: "3 tacos com carne temperada, guacamole, queijo e pico de gallo",
+                price: 280,
+                restaurant: "Mexican Fiesta",
+                image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "Mexicana",
+                rating: 4.4,
+                deliveryTime: "30-40 min"
+            }
+        ];
+
+        // Dados dos restaurantes em destaque
+        const featuredRestaurants = [
+            {
+                id: 1,
+                name: "Pizza Italiana",
+                category: "Pizzaria",
+                rating: 4.8,
+                deliveryTime: "30-40 min",
+                image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                featured: true
+            },
+            {
+                id: 2,
+                name: "Burger House",
+                category: "Hamburgueria",
+                rating: 4.6,
+                deliveryTime: "25-35 min",
+                image: "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                featured: true
+            },
+            {
+                id: 3,
+                name: "Sushi Master",
+                category: "Japonês",
+                rating: 4.9,
+                deliveryTime: "40-50 min",
+                image: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                featured: true
+            }
+        ];
+
+        // Função para gerar estrelas de avaliação
+        function generateStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star" style="color: #FFD700;"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt" style="color: #FFD700;"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star" style="color: #FFD700;"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Função para formatar preço em Metical
+        function formatPrice(price) {
+            return new Intl.NumberFormat('pt-MZ', {
+                style: 'currency',
+                currency: 'MZN'
+            }).format(price);
+        }
+
+        // Função para criar cards de comida
+        function createFoodCards() {
+            const foodCardsContainer = document.getElementById('foodCards');
+            
+            foodProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'food-card';
+                card.innerHTML = `
+                    <div class="food-card-image">
+                        <img src="${product.image}" alt="${product.name}" class="food-card-img">
+                        <div class="food-card-badge">${product.category}</div>
+                        <div class="food-card-overlay">
+                            <button class="btn-add-to-cart" onclick="addToCart(${product.id})">
+                                <i class="fas fa-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="food-card-content">
+                        <div class="food-card-header">
+                            <h3 class="food-card-title">${product.name}</h3>
+                            <div class="food-card-rating">
+                                ${generateStarRating(product.rating)}
+                                <span class="rating-value">${product.rating}</span>
+                            </div>
+                        </div>
+                        <p class="food-card-restaurant">
+                            <i class="fas fa-store"></i> ${product.restaurant}
+                        </p>
+                        <p class="food-card-description">${product.description}</p>
+                        <div class="food-card-footer">
+                            <div class="food-card-info">
+                                <span class="food-card-price">${formatPrice(product.price)}</span>
+                                <span class="food-card-delivery">
+                                    <i class="fas fa-clock"></i> ${product.deliveryTime}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                foodCardsContainer.appendChild(card);
+            });
+        }
+
+        // Função para criar cards de restaurantes
+        function createRestaurantCards() {
+            const restaurantsContainer = document.getElementById('featuredRestaurants');
+            
+            featuredRestaurants.forEach(restaurant => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-4';
+                col.innerHTML = `
+                    <div class="restaurant-card">
+                        <div class="restaurant-card-image">
+                            <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-img">
+                            <div class="restaurant-card-badge">Destaque</div>
+                        </div>
+                        <div class="restaurant-card-content">
+                            <h4 class="restaurant-name">${restaurant.name}</h4>
+                            <p class="restaurant-category">${restaurant.category}</p>
+                            <div class="restaurant-info">
+                                <div class="restaurant-rating">
+                                    ${generateStarRating(restaurant.rating)}
+                                    <span>${restaurant.rating}</span>
+                                </div>
+                                <div class="restaurant-delivery">
+                                    <i class="fas fa-motorcycle"></i> ${restaurant.deliveryTime}
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100 mt-3" onclick="viewRestaurant(${restaurant.id})">
+                                Ver Cardápio
+                            </button>
+                        </div>
+                    </div>
+                `;
+                restaurantsContainer.appendChild(col);
+            });
+        }
+
+        // Funções de interação (placeholder)
+        function addToCart(productId) {
+            const product = foodProducts.find(p => p.id === productId);
+            alert(`✅ ${product.name} adicionado ao carrinho!\nPreço: ${formatPrice(product.price)}`);
+        }
+
+        function viewRestaurant(restaurantId) {
+            const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
+            alert(`🏪 Abrindo cardápio do ${restaurant.name}...`);
+        }
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            createFoodCards();
+            createRestaurantCards();
+            
+            // Adicionar efeito de scroll na navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.background = 'rgba(199, 53, 60, 0.95)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                } else {
+                    navbar.style.background = 'linear-gradient(135deg, var(--primary-red), var(--primary-red-hover))';
+                    navbar.style.backdropFilter = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
