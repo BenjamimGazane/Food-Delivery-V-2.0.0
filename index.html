@@ -334,13 +334,11 @@
 
         // Funções de interação (placeholder)
         function addToCart(productId) {
-            const product = foodProducts.find(p => p.id === productId);
-            alert(`✅ ${product.name} adicionado ao carrinho!\nPreço: ${formatPrice(product.price)}`);
+          window.location.href = "login.html"
         }
 
         function viewRestaurant(restaurantId) {
-            const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
-            alert(`🏪 Abrindo cardápio do ${restaurant.name}...`);
+            window.location.href = "login.html"
         }
 
         // Inicializar a página
