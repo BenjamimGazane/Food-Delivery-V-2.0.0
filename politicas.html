@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - app&tite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        :root {
+            --primary-red: #C7353C;
+            --secondary-orange: #FF733C;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --gray-text: #666;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        /* Header */
+        .privacy-header {
+            background: var(--primary-red);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .privacy-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .privacy-update {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Conteúdo */
+        .privacy-content {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .intro-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+        }
+        
+        /* Seções */
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subsection-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin: 25px 0 15px 0;
+        }
+        
+        .privacy-text {
+            color: var(--gray-text);
+            margin-bottom: 15px;
+        }
+        
+        .privacy-list {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .privacy-list li {
+            margin-bottom: 10px;
+            color: var(--gray-text);
+        }
+        
+        .highlight {
+            color: var(--primary-red);
+            font-weight: 500;
+        }
+        
+        /* Contatos */
+        .contacts-section {
+            background: var(--light-bg);
+            padding: 40px 0;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+        
+        .contacts-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        .contact-icon {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Aceitação */
+        .acceptance-section {
+            background: var(--primary-red);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .acceptance-text {
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .privacy-footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-tagline {
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .privacy-title {
+                font-size: 2rem;
+            }
+            
+            .privacy-content {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .subsection-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="privacy-header">
+        <div class="container">
+            <i class="fas fa-utensils me-2"></i>App&tite
+            <h1 class="privacy-title">Política de Privacidade</h1>
+            <p class="privacy-update">Última atualização: 10 de Outubro de 2025</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo -->
+    <section class="privacy-content">
+        <div class="container privacy-container">
+            <!-- Introdução -->
+            <div class="intro-section">
+                <p class="intro-text">O app&tite valoriza a sua privacidade e compromete-se a proteger os seus dados pessoais em conformidade com a legislação moçambicana. Esta Política explica como recolhemos, utilizamos, armazenamos e protegemos as informações dos utilizadores do nosso aplicativo e serviços.</p>
+                <p class="intro-text">Ao utilizar o app&tite, o utilizador concorda com as práticas descritas abaixo.</p>
+            </div>
+
+            <!-- Seção 1 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">1</span>
+                    Dados que Recolhemos
+                </h2>
+                <p class="privacy-text">O app&tite pode recolher as seguintes categorias de dados:</p>
+                
+                <h3 class="subsection-title">1.1. Dados fornecidos pelo utilizador</h3>
+                <ul class="privacy-list">
+                    <li>Nome completo</li>
+                    <li>Número de telefone</li>
+                    <li>Endereço de e-mail</li>
+                    <li>Moradas de entrega e referências</li>
+                    <li>Dados de pagamento (parcialmente, conforme o método escolhido)</li>
+                    <li>Informações inseridas em formulários, avaliações ou mensagens de contacto</li>
+                </ul>
+                
+                <h3 class="subsection-title">1.2. Dados recolhidos automaticamente</h3>
+                <ul class="privacy-list">
+                    <li>Endereço IP</li>
+                    <li>Tipo de dispositivo e sistema operativo</li>
+                    <li>Dados de localização (para calcular distâncias e estimar tempo de entrega)</li>
+                    <li>Histórico de encomendas e interações com o aplicativo</li>
+                </ul>
+            </div>
+
+            <!-- Seção 2 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">2</span>
+                    Finalidade da Recolha de Dados
+                </h2>
+                <p class="privacy-text">Os dados pessoais são recolhidos e utilizados para:</p>
+                <ol class="privacy-list">
+                    <li>Criar e gerir a conta do utilizador;</li>
+                    <li>Processar e entregar encomendas;</li>
+                    <li>Melhorar a experiência e funcionamento do aplicativo;</li>
+                    <li>Emitir faturas e processar pagamentos;</li>
+                    <li>Enviar notificações sobre o estado da encomenda;</li>
+                    <li>Cumprir obrigações legais e fiscais;</li>
+                    <li>Comunicar promoções e novidades (com consentimento prévio).</li>
+                </ol>
+            </div>
+
+            <!-- Seção 3 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">3</span>
+                    Partilha de Dados
+                </h2>
+                <p class="privacy-text">O app&tite poderá partilhar dados pessoais apenas quando necessário e de forma limitada, com:</p>
+                <ul class="privacy-list">
+                    <li>Restaurantes parceiros, para processar os pedidos;</li>
+                    <li>Entregadores, para realizar a entrega;</li>
+                    <li>Prestadores de serviços (ex.: processadores de pagamento, suporte técnico);</li>
+                    <li>Autoridades legais, quando exigido por lei ou ordem judicial.</li>
+                </ul>
+                <p class="privacy-text">Em nenhum caso o app&tite vende ou aluga informações pessoais a terceiros.</p>
+            </div>
+
+            <!-- Seção 4 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">4</span>
+                    Armazenamento e Segurança
+                </h2>
+                <ul class="privacy-list">
+                    <li>Os dados são armazenados em servidores seguros e protegidos contra acesso não autorizado, perda ou alteração.</li>
+                    <li>Utilizamos criptografia SSL/TLS e outras medidas técnicas de segurança.</li>
+                    <li>Apenas funcionários autorizados têm acesso aos dados, mediante confidencialidade.</li>
+                </ul>
+            </div>
+
+            <!-- Seção 5 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">5</span>
+                    Retenção dos Dados
+                </h2>
+                <p class="privacy-text">Os dados pessoais serão mantidos apenas pelo período necessário para cumprir as finalidades descritas nesta Política ou conforme exigido por lei.</p>
+                <p class="privacy-text">Após esse período, os dados serão eliminados ou anonimizados de forma segura.</p>
+            </div>
+
+            <!-- Seção 6 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">6</span>
+                    Direitos do Utilizador
+                </h2>
+                <p class="privacy-text">Nos termos da Lei n.º 3/2017, o utilizador tem direito a:</p>
+                <ul class="privacy-list">
+                    <li>Aceder aos seus dados pessoais;</li>
+                    <li>Solicitar a correção de dados incorretos;</li>
+                    <li>Solicitar a eliminação dos seus dados ("direito ao esquecimento");</li>
+                    <li>Retirar o consentimento para uso de dados pessoais;</li>
+                    <li>Opor-se ao tratamento para fins de marketing.</li>
+                </ul>
+                <p class="privacy-text">Pedidos devem ser enviados para: <span class="highlight">privacidade@appetite.co.mz</span></p>
+            </div>
+
+            <!-- Seção 7 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">7</span>
+                    Cookies e Tecnologias Similares
+                </h2>
+                <p class="privacy-text">O app&tite pode utilizar cookies para melhorar o desempenho, guardar preferências e analisar o uso da aplicação.</p>
+                <p class="privacy-text">O utilizador pode bloquear cookies, mas isso pode limitar algumas funcionalidades.</p>
+            </div>
+
+            <!-- Seção 8 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">8</span>
+                    Comunicação e Marketing
+                </h2>
+                <p class="privacy-text">O app&tite poderá enviar notificações, promoções ou mensagens informativas relacionadas ao serviço.</p>
+                <p class="privacy-text">O utilizador pode, cancelar o recebimento dessas comunicações clicando em "Cancelar subscrição" ou entrando em contacto connosco.</p>
+            </div>
+
+            <!-- Seção 9 -->
+            <div class="privacy-section">
+                <h2 class="section-title">
+                    <span class="section-number">9</span>
+                    Alterações desta Política
+                </h2>
+                <p class="privacy-text">O app&tite poderá atualizar esta Política de Privacidade periodicamente.</p>
+                <p class="privacy-text">As alterações serão comunicadas através do aplicativo ou por e-mail, quando significativas.</p>
+            </div>
+
+            <!-- Contatos -->
+            <div class="contacts-section">
+                <h3 class="contacts-title">Contactos para Privacidade</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>privacidade@appetite.co.mz</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>84 8484 000 / 87 000 3336</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>Maputo, Moçambique</div>
+                </div>
+            </div>
+
+            <!-- Aceitação -->
+            <div class="acceptance-section">
+                <p class="acceptance-text">Ao usar o app&tite, o utilizador confirma que leu, compreendeu e concorda com esta Política de Privacidade.</p>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-utensils me-2"></i>App&tite</h5>
+                    <p>Os melhores frutos do mar entregues na sua porta.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links Rápidos</h5>
+                    <a href="sobrenos.html">Sobre Nós</a><br>
+                    <a href="termos.html">Termos de Serviço</a><br>
+                    <a href="politicas.html">Política de Privacidade</a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contactos</h5>
+                    <p><i class="fas fa-phone me-2"></i> 84 8484 000 / 87 000 3336</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@mariscosdelivery.co.mz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MariscosDelivery. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

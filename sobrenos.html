@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - app&tite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #C7353C;
+            --secondary-orange: #FF733C;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .about-header {
+            background: linear-gradient(rgba(199, 53, 60, 0.9), rgba(199, 53, 60, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .about-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .about-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Seções */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        /* Cards de Valores */
+        .values-section {
+            background-color: white;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+        }
+        
+        .value-description {
+            color: #666;
+        }
+        
+        /* Nossa História */
+        .story-section {
+            background-color: var(--light-bg);
+        }
+        
+        .story-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        /* Localização */
+        .location-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .location-info {
+            padding: 30px;
+        }
+        
+        .location-title {
+            font-size: 1.8rem;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .location-details {
+            margin-bottom: 25px;
+        }
+        
+        .location-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .location-icon {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        /* Equipe */
+        .team-section {
+            background-color: white;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--secondary-orange);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Animações */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        .about-footer {
+            background: var(--primary-red);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--secondary-orange);
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-utensils me-2"></i>App&tite
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cardapio.html">Cardápio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sobrenos.html">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="termos.html">Termos de Serviço</a></li>
+                    <li class="nav-item"><a class="nav-link" href="politicas.html">Política de Privacidade</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-secondary" href="#">Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    <header class="about-header">
+        <div class="container">
+            <h1 class="about-title">Sobre Nós</h1>
+            <p class="about-subtitle">Conheça a história, missão e valores do app&tite - o seu parceiro em entregas de comida</p>
+        </div>
+    </header>
+
+    <!-- Nossa História -->
+    <section class="section story-section">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <p class="section-subtitle">Como nasceu o app&tite e o que nos motiva todos os dias</p>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="story-content fade-in">
+                        <p>O <span class="highlight">app&tite</span> é um aplicativo moçambicano criado para tornar mais fácil e rápido o processo de encomendar e receber refeições onde estiver.</p>
+                        
+                        <p>Ligamos clientes, restaurantes e entregadores numa única plataforma simples, segura e eficiente.</p>
+                        
+                        <p>Com o <span class="highlight">app&tite</span>, pode descobrir novos sabores, apoiar negócios locais e receber a sua comida favorita sem sair de casa.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="fade-in">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipe app&tite" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Missão -->
+    <section class="section values-section">
+        <div class="container">
+            <h2 class="section-title">Nossa Missão e Valores</h2>
+            <p class="section-subtitle">O que nos guia e inspira no nosso dia a dia</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="value-title">Nossa Missão</h3>
+                        <p class="value-description">Simplificar o seu dia e valorizar a gastronomia moçambicana, oferecendo uma experiência de entrega fiável, transparente e feita à sua medida.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="value-title">Compromisso Local</h3>
+                        <p class="value-description">Apoiamos e promovemos os sabores autênticos de Moçambique, conectando você aos melhores restaurantes da sua comunidade.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="value-title">Inovação</h3>
+                        <p class="value-description">Buscamos constantemente melhorar nossa plataforma para oferecer a melhor experiência em entregas de comida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Onde Estamos</h2>
+            <p class="section-subtitle">Visite-nos na nossa sede</p>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="location-card fade-in">
+                        <div class="location-info">
+                            <h3 class="location-title">Nossa Sede</h3>
+                            
+                            <div class="location-details">
+                                <div class="location-detail">
+                                    <div class="location-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Endereço:</strong><br>
+                                        Bairro Costa do Sol (Mapulene)<br>
+                                        Maputo, Moçambique
+                                    </div>
+                                </div>
+                                
+                                <div class="location-detail">
+                                    <div class="location-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Horário de Funcionamento:</strong><br>
+                                        Segunda a Sexta: 8h00 - 18h00<br>
+                                        Sábado: 9h00 - 13h00
+                                    </div>
+                                </div>
+                                
+                                <div class="location-detail">
+                                    <div class="location-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Contactos:</strong><br>
+                                        84 8484 000 / 87 000 3336<br>
+                                        info@appetite.co.mz
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" style="background-color: var(--primary-red); border: none;">
+                                <i class="fas fa-directions me-2"></i> Como Chegar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="fade-in">
+                        <div class="location-card">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.227146277874!2d32.56741531502924!3d-25.968883983523427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee69b7c921e90d7%3A0x8a3aefb1e3d4b5a2!2sCosta%20do%20Sol%2C%20Maputo%2C%20Mozambique!5e0!3m2!1sen!2s!4v1641234567890!5m2!1sen!2s" 
+                                width="100%" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-utensils me-2"></i>App&tite</h5>
+                    <p>Os melhores frutos do mar entregues na sua porta.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links Rápidos</h5>
+                    <a href="sobrenos.html">Sobre Nós</a><br>
+                    <a href="termos.html">Termos de Serviço</a><br>
+                    <a href="politicas.html">Política de Privacidade</a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contactos</h5>
+                    <p><i class="fas fa-phone me-2"></i> 84 8484 000 / 87 000 3336</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@mariscosdelivery.co.mz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MariscosDelivery. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animação de fade-in com scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Verificar elementos visíveis no carregamento
+            fadeInOnScroll();
+            
+            // Verificar elementos visíveis no scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+</body>
+</html>
