@@ -12,7 +12,338 @@
     --text-gray: #6c757d;
     --border-light: #e9ecef;
 }
+/* Seção Sobre o Restaurante */
+.benefits-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+}
 
+.benefits-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--primary-red);
+    border-radius: 2px;
+}
+
+/* Card de Informações do Restaurante */
+.restaurant-info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(199, 53, 60, 0.1);
+    border: 1px solid rgba(199, 53, 60, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(199, 53, 60, 0.15);
+}
+
+.restaurant-info-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-info-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.restaurant-info-rating {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.restaurant-info-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.restaurant-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.feature-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(199, 53, 60, 0.08);
+    color: var(--primary-red);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(199, 53, 60, 0.2);
+}
+
+.feature-badge:hover {
+    background: var(--primary-red);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(199, 53, 60, 0.3);
+}
+
+.feature-badge i {
+    font-size: 0.9rem;
+}
+
+/* Seção CTA (Call to Action) */
+.cta-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-hover) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.cta-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-section h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-section p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-section .btn-primary {
+    background: white;
+    color: var(--primary-red);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-section .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: #f8f9fa;
+    color: var(--primary-red-hover);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .restaurant-info-card {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .restaurant-info-name {
+        font-size: 1.8rem;
+    }
+    
+    .restaurant-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-section {
+        padding: 80px 0;
+    }
+    
+    .cta-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-section p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-section .btn-primary {
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .restaurant-info-card {
+        padding: 1.5rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cta-section p {
+        font-size: 1rem;
+    }
+    
+    .feature-badge {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animações suaves */
+.restaurant-info-card,
+.feature-badge,
+.cta-section .btn-primary {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Header da seção de destaques */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Botão Ver Cardápio Completo */
+.view-menu-btn {
+    background: transparent;
+    color: var(--primary-red);
+    border: 2px solid var(--primary-red);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-menu-btn:hover {
+    background: var(--primary-red);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(199, 53, 60, 0.3);
+}
+
+.view-menu-btn:active {
+    transform: translateY(0);
+}
+
+.view-menu-btn i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.view-menu-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .view-menu-btn {
+        align-self: flex-start;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .view-menu-btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
+/* Efeito de brilho no hover do CTA */
+.cta-section .btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-section .btn-primary:hover::before {
+    left: 100%;
+}
 /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
 * {
     margin: 0;
@@ -330,7 +661,324 @@ body {
     align-items: center;
     gap: 5px;
 }
+/* Carrinho Flutuante */
+.floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
 
+.cart-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(199, 53, 60, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(199, 53, 60, 0.6);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 4px 20px rgba(199, 53, 60, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(199, 53, 60, 0.6);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(199, 53, 60, 0.4);
+    }
+}
+
+/* Modal do Carrinho */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+}
+
+.cart-modal.show {
+    display: block;
+}
+
+.cart-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.cart-modal-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: white;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.cart-modal.show .cart-modal-content {
+    transform: translateX(0);
+}
+
+.cart-modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-red);
+    color: white;
+}
+
+.cart-modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.close-cart:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Itens do Carrinho */
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+}
+
+.empty-cart i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+.empty-cart p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.cart-item-price {
+    color: var(--primary-red);
+    font-weight: 600;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background: var(--primary-red);
+    color: white;
+    border-color: var(--primary-red);
+}
+
+.quantity-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #ff4757;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.remove-item:hover {
+    background: rgba(255, 71, 87, 0.1);
+}
+
+/* Resumo do Carrinho */
+.cart-summary {
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.total-price {
+    color: var(--primary-red);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--primary-red), var(--primary-red-hover));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.checkout-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(199, 53, 60, 0.4);
+}
+
+.checkout-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .cart-modal-content {
+        max-width: 100%;
+    }
+    
+    .floating-cart {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .cart-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Animações */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cart-item {
+    animation: slideIn 0.3s ease;
+}
 /* ===== CARDS DE RESTAURANTES ===== */
 .restaurant-card {
     background: var(--text-white);
@@ -419,7 +1067,200 @@ body {
     align-items: center;
     gap: 5px;
 }
+/* Seção CTA com Imagem de Fundo */
+.cta-section {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, rgba(199, 53, 60, 0.9), rgba(199, 53, 60, 0.8));
+    overflow: hidden;
+}
 
+.cta-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/pexels-andrey-castillejos-355270984-15236651.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.cta-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-section h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cta-section p {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Botão CTA */
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: var(--primary-red);
+    text-decoration: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    color: var(--primary-red-hover);
+}
+
+.cta-btn:hover::before {
+    left: 100%;
+}
+
+.cta-btn:active {
+    transform: translateY(-1px);
+}
+
+.cta-btn i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Efeito de brilho sutil */
+.cta-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ff6b6b);
+    border-radius: 52px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cta-btn:hover::after {
+    opacity: 1;
+}
+
+/* Animação de entrada */
+.cta-section h2,
+.cta-section p,
+.cta-btn {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.cta-section p {
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+.cta-btn {
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito de partículas sutil */
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    z-index: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 80px 0;
+    }
+    
+    .cta-section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .cta-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-section p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
 /* ===== ESTILOS PARA AS ESTRELAS DE AVALIAÇÃO ===== */
 .fa-star, .fa-star-half-alt {
     font-size: 0.9rem;

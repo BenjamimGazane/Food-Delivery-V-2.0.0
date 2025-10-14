@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - MariscosDelivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="cardapio.css">
+    <style>
+        :root {
+            --primary-red: #C7353C;
+            --secondary-orange: #FF733C;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .menu-header {
+            background: linear-gradient(rgba(199, 53, 60, 0.9), rgba(199, 53, 60, 0.8)), 
+                        url('images/pexels-khezez-28442338.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .menu-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .menu-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .menu-filters {
+            background: var(--primary-red);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-red);
+            border: 2px solid white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--secondary-orange);
+            color: white;
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+        
+        .menu-categories {
+            padding: 40px 0;
+        }
+        
+        .category-section {
+            margin-bottom: 50px;
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .category-title {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .category-description {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* Layout dos cards - 2x2 no mobile */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        /* Para telas maiores, ajustamos para 3 ou 4 colunas */
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .menu-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+        }
+        
+        .menu-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .menu-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .menu-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary-orange);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .menu-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .menu-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        .menu-card-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            white-space: nowrap;
+        }
+        
+        .menu-card-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .menu-card-footer {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .menu-card-rating {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .menu-card-rating i {
+            color: #FFC107;
+            margin-right: 2px;
+        }
+        
+        .menu-card-actions {
+            padding-top: 0px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            color: #ddd;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 5px;
+        }
+        
+        .favorite-btn:hover,
+        .favorite-btn.active {
+            color: var(--primary-red);
+        }
+        
+        .add-to-cart-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: var(--secondary-orange);
+        }
+        
+        .add-to-cart-btn.loading {
+            background: #28a745;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="menu-page">
+    <!-- Header do Cardápio -->
+    <header class="menu-header" style="width: 100%;">
+        <div class="menu-header-content">
+            <i class="fas fa-utensils me-2"></i>App&tite
+            <h1 class="menu-title">Cardápio Completo</h1>
+            <p class="menu-subtitle">Descubra nossos deliciosos pratos de frutos do mar</p>
+        </div>
+    </header>
+<!-- Carrinho Flutuante -->
+<div class="floating-cart" id="floatingCart">
+    <div class="cart-icon" id="cartToggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+</div>
+
+<!-- Modal do Carrinho -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-overlay" id="cartOverlay"></div>
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h3>Meu Carrinho</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Itens do carrinho serão inseridos aqui -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Seu carrinho está vazio</p>
+            </div>
+        </div>
+        
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price" id="cartTotal">MZN 0,00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                Finalizar Pedido
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- Filtros de Categoria -->
+    <section class="menu-filters">
+        <div class="container">
+            <div class="filter-container" id="filterContainer">
+                <!-- Filtros serão gerados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seções de Categoria -->
+    <main class="menu-categories">
+        <div class="container">
+            <div id="categoriesContainer">
+                <!-- Categorias serão geradas dinamicamente -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // Dados dos produtos
+        const foodProducts = [
+            {
+                id: 1,
+                name: "Camarão Grelhado Especial",
+                description: "Camarões jumbo grelhados na manteiga com alho e ervas finas",
+                price: 850,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                category: "Camarão",
+                rating: 4.9,
+                deliveryTime: "30-40 min"
+            },
+            {
+                id: 2,
+                name: "Moqueca de Peixe",
+                description: "Peixe fresco cozido no leite de coco com azeite de dendê e pimentões",
+                price: 650,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                category: "Peixe",
+                rating: 4.8,
+                deliveryTime: "35-45 min"
+            },
+            {
+                id: 3,
+                name: "Polvo à Lagareiro",
+                description: "Polvo macio grelhado com batatas a murro e azeite extra virgem",
+                price: 950,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                category: "Polvo",
+                rating: 4.7,
+                deliveryTime: "40-50 min"
+            },
+            {
+                id: 4,
+                name: "Risoto de Mariscos",
+                description: "Risoto cremoso com mix de frutos do mar e açafrão",
+                price: 780,
+                restaurant: "Mariscos do Porto",
+                image: "images/pexels-roman-odintsov-4869328.jpg",
+                category: "Risoto",
+                rating: 4.8,
+                deliveryTime: "35-45 min"
+            },
+            {
+                id: 5,
+                name: "Salmão Grelhado",
+                description: "Filé de salmão grelhado com legumes sautée e molho de ervas",
+                price: 720,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                category: "Peixe",
+                rating: 4.6,
+                deliveryTime: "25-35 min"
+            },
+            {
+                id: 6,
+                name: "Cataplana de Mariscos",
+                description: "Mix de mariscos cozidos na cataplana com vinho branco e coentros",
+                price: 1100,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                category: "Mariscos",
+                rating: 4.9,
+                deliveryTime: "40-50 min"
+            },
+            {
+                id: 7,
+                name: "Camarão Empanado",
+                description: "Camarões crocantes empanados com farinha panko e especiarias",
+                price: 780,
+                restaurant: "Mariscos do Porto",
+                image: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+                category: "Camarão",
+                rating: 4.7,
+                deliveryTime: "25-35 min"
+            },
+            {
+                id: 8,
+                name: "Lagosta Grelhada",
+                description: "Lagosta suculenta grelhada com manteiga de alho e limão",
+                price: 1500,
+                restaurant: "Mariscos do Porto",
+                image: "images/pexels-roman-odintsov-4869328.jpg",
+                category: "Mariscos",
+                rating: 4.9,
+                deliveryTime: "45-55 min"
+            }
+        ];
+
+        // Função para formatar preço
+       
+
+        // Função para gerar estrelas
+        function generateStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Função para criar filtros
+        function createFilters() {
+            const categories = [...new Set(foodProducts.map(product => product.category))];
+            const filterContainer = document.getElementById('filterContainer');
+            
+            // Botão "Todos"
+            const allButton = document.createElement('button');
+            allButton.className = 'filter-btn active';
+            allButton.textContent = 'Todos';
+            allButton.setAttribute('data-category', 'all');
+            allButton.addEventListener('click', filterProducts);
+            filterContainer.appendChild(allButton);
+            
+            // Botões por categoria
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'filter-btn';
+                button.textContent = category;
+                button.setAttribute('data-category', category);
+                button.addEventListener('click', filterProducts);
+                filterContainer.appendChild(button);
+            });
+        }
+
+        // Função para filtrar produtos
+        function filterProducts(event) {
+            const category = event.currentTarget.getAttribute('data-category');
+            
+            // Atualizar botões ativos
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Filtrar e exibir produtos
+            displayProducts(category);
+            
+            // Scroll para a seção se não for "Todos"
+            if (category !== 'all') {
+                const section = document.getElementById(`category-${category}`);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // Função para exibir produtos
+        function displayProducts(category = 'all') {
+            const categoriesContainer = document.getElementById('categoriesContainer');
+            categoriesContainer.innerHTML = '';
+            
+            const categories = category === 'all' 
+                ? [...new Set(foodProducts.map(product => product.category))]
+                : [category];
+            
+            categories.forEach(cat => {
+                const categoryProducts = foodProducts.filter(product => product.category === cat);
+                
+                const categorySection = document.createElement('section');
+                categorySection.className = 'category-section';
+                categorySection.id = `category-${cat}`;
+                
+                categorySection.innerHTML = `
+                    <div class="category-header">
+                        <h2 class="category-title">${cat}</h2>
+                        <p class="category-description">Deliciosos pratos de ${cat.toLowerCase()} selecionados especialmente para você</p>
+                    </div>
+                    <div class="menu-grid">
+                        ${categoryProducts.map(product => `
+                            <div class="menu-card" data-product-id="${product.id}">
+                                <img src="${product.image}" alt="${product.name}" class="menu-card-image">
+                                <div class="menu-card-badge">${product.category}</div>
+                                <div class="menu-card-content">
+                                    <div class="menu-card-header">
+                                        <h3 class="menu-card-title">${product.name}</h3>
+                                        <div class="menu-card-price">${product.price + 'Mzn'}</div>
+                                    </div>
+                                    <p class="menu-card-description">${product.description}</p>
+                                    <div class="menu-card-footer">
+                                        <div class="menu-card-rating">
+                                            ${generateStarRating(product.rating)}
+                                            <span>${product.rating}</span>
+                                            <span class="ms-2">• ${product.deliveryTime}</span>
+                                        </div>
+                                        <div class="menu-card-actions">
+                                            <button class="favorite-btn" onclick="toggleFavorite(${product.id})">
+                                                <i class="far fa-heart"></i>
+                                            </button>
+                                            <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Adicionar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                categoriesContainer.appendChild(categorySection);
+            });
+        }
+
+        // Função para adicionar ao carrinho
+        function addToCart(productId) {
+            const product = foodProducts.find(p => p.id === productId);
+            if (product) {
+                // Aqui você integraria com o sistema de carrinho
+                console.log('Produto adicionado ao carrinho:', product);
+                
+                // Feedback visual
+                const button = event.currentTarget;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+                button.classList.add('loading');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('loading');
+                }, 2000);
+            }
+        }
+
+        // Função para favoritar
+        function toggleFavorite(productId) {
+            const button = event.currentTarget;
+            const icon = button.querySelector('i');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.classList.add('active');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.classList.remove('active');
+            }
+        }
+
+        // Função para mostrar/ocultar botão voltar ao topo
+        function setupBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            createFilters();
+            displayProducts();
+            setupBackToTop();
+        });
+    </script>
+</body>
+</html>
