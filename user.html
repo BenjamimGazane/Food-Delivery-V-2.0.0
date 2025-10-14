@@ -88,12 +88,11 @@
     
     .order-card {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         background: var(--text-white);
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
         border: 1px solid var(--border-light);
     }
     
@@ -545,7 +544,10 @@
                     <p class="mb-1">Pizza Margherita + Refrigerante</p>
                     <small class="text-muted">Pedido #12345 • Chega em 15-20 min</small>
                 </div>
-                <button class="btn btn-outline-primary btn-sm ms-auto">Acompanhar</button>
+                <div class="text-center" style="padding-top: 10px;">
+                    <button class="btn btn-outline-primary btn-sm ms-auto">Acompanhar</button>
+                </div>
+                
             </div>
         </div>
     </section>
