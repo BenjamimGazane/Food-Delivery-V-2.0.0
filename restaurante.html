@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App&tite - Dashboard Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #C7353C;
+            --primary-red-hover: #D9363D;
+            --secondary-orange: #FF733C;
+            --secondary-orange-hover: #FF824E;
+            --background-light: #FCFBFB;
+            --background-light-alt: #F9F9F9;
+            --text-dark: #2A2A2A;
+            --text-black: #000000;
+            --text-white: #FFFFFF;
+            --text-gray: #6c757d;
+            --border-light: #e9ecef;
+            --success-green: #28a745;
+            --warning-yellow: #ffc107;
+            --info-blue: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--text-white);
+            min-height: 100vh;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 280px;
+            z-index: 1000;
+        }
+
+        .sidebar-brand {
+            background: linear-gradient(135deg, var(--primary-red), var(--secondary-orange));
+            color: var(--text-white);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-brand h2 {
+            font-weight: bold;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            padding: 15px 25px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(199, 53, 60, 0.1);
+            color: var(--primary-red);
+            border-left-color: var(--primary-red);
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--text-white);
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-red), var(--secondary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 30px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--text-white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary-red);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card.orange {
+            border-left-color: var(--secondary-orange);
+        }
+
+        .stat-card.green {
+            border-left-color: var(--success-green);
+        }
+
+        .stat-card.blue {
+            border-left-color: var(--info-blue);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-card .stat-icon {
+            background: rgba(199, 53, 60, 0.1);
+            color: var(--primary-red);
+        }
+
+        .stat-card.orange .stat-icon {
+            background: rgba(255, 115, 60, 0.1);
+            color: var(--secondary-orange);
+        }
+
+        .stat-card.green .stat-icon {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success-green);
+        }
+
+        .stat-card.blue .stat-icon {
+            background: rgba(23, 162, 184, 0.1);
+            color: var(--info-blue);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .change-positive {
+            color: var(--success-green);
+        }
+
+        .change-negative {
+            color: var(--primary-red);
+        }
+
+        /* Orders Section */
+        .orders-section {
+            background: var(--text-white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .view-all {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .view-all:hover {
+            color: var(--primary-red-hover);
+        }
+
+        .orders-list {
+            padding: 0;
+        }
+
+        .order-item {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-item:hover {
+            background: var(--background-light-alt);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-info {
+            flex: 1;
+        }
+
+        .order-number {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .order-details {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .order-time {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+        }
+
+        .order-status {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning-yellow);
+        }
+
+        .status-preparing {
+            background: rgba(23, 162, 184, 0.1);
+            color: var(--info-blue);
+        }
+
+        .status-ready {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-delivery {
+            background: rgba(199, 53, 60, 0.1);
+            color: var(--primary-red);
+        }
+
+        /* Menu Table Container */
+        .menu-table-container {
+            background: var(--text-white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--background-light-alt);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            padding: 10px 15px 10px 40px;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            width: 100%;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(199, 53, 60, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-red), var(--secondary-orange));
+            color: var(--text-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary-custom:hover {
+            background: linear-gradient(135deg, var(--primary-red-hover), var(--secondary-orange-hover));
+            color: var(--text-white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(199, 53, 60, 0.3);
+            text-decoration: none;
+        }
+
+        /* Table Styles */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .menu-table th {
+            background: var(--background-light-alt);
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: middle;
+        }
+
+        .menu-table tr:hover {
+            background: var(--background-light);
+        }
+
+        .menu-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Product Info */
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--border-light);
+        }
+
+        .product-details h5 {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .product-details p {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-available {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-unavailable {
+            background: rgba(108, 117, 125, 0.1);
+            color: var(--text-gray);
+        }
+
+        .status-popular {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning-yellow);
+        }
+
+        /* Price and Unit Styles */
+        .price {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .unit-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .unit-weight {
+            background: rgba(199, 53, 60, 0.1);
+            color: var(--primary-red);
+        }
+
+        .unit-piece {
+            background: rgba(23, 162, 184, 0.1);
+            color: var(--info-blue);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background: rgba(23, 162, 184, 0.1);
+            color: var(--info-blue);
+        }
+
+        .btn-edit:hover {
+            background: var(--info-blue);
+            color: var(--text-white);
+            transform: scale(1.1);
+        }
+
+        .btn-delete {
+            background: rgba(199, 53, 60, 0.1);
+            color: var(--primary-red);
+        }
+
+        .btn-delete:hover {
+            background: var(--primary-red);
+            color: var(--text-white);
+            transform: scale(1.1);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--text-white);
+            border: 2px solid var(--border-light);
+            color: var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: var(--text-white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .table-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .table-actions {
+                justify-content: space-between;
+            }
+
+            .menu-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .product-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .category-filter {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+            
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><i class="fas fa-utensils me-2"></i>App&tite Admin</h2>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-shopping-bag"></i>
+                        Gerir Encomendas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-utensils"></i>
+                        Gerir Menu
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="page-title">
+                <h1>Dashboard Principal</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">GS</div>
+                <div>
+                    <div class="fw-bold">Gerente Silva</div>
+                    <small class="text-muted">Administrador</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Encomendas Hoje</div>
+                    
+                </div>
+                
+                <div class="stat-card orange">
+                    <div class="stat-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-value">MZN 28.450</div>
+                    <div class="stat-label">Vendas do Dia</div>
+                   
+                </div>
+                
+                <div class="stat-card green">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Em Preparação</div>
+                    
+                </div>
+                
+                <div class="stat-card blue">
+                    <div class="stat-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">A Caminho</div>
+                    
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="orders-section">
+                <div class="section-header">
+                    <h3 class="section-title">Encomendas Recentes</h3>
+                    <a href="#" class="view-all">Ver Todas <i class="fas fa-chevron-right ms-1"></i></a>
+                </div>
+                
+                <div class="orders-list">
+                    <!-- Order 1 -->
+                    <div class="order-item">
+                        <div class="order-info">
+                            <div class="order-number">#MP2024-0158</div>
+                            <div class="order-details">Camarão (500g) + Risoto (2x) + Sumo Natural (1x)</div>
+                            <div class="order-time">Há 5 minutos • Av. Mao Tse Tung</div>
+                        </div>
+                        <span class="order-status status-pending">Pendente</span>
+                    </div>
+                    
+                    <!-- Order 2 -->
+                    <div class="order-item">
+                        <div class="order-info">
+                            <div class="order-number">#MP2024-0157</div>
+                            <div class="order-details">Peixe (700g) + Arroz de Coco (1x) + Salada (1x)</div>
+                            <div class="order-time">Há 12 minutos • Costa do Sol</div>
+                        </div>
+                        <span class="order-status status-preparing">Preparando</span>
+                    </div>
+                    
+                    <!-- Order 3 -->
+                    <div class="order-item">
+                        <div class="order-info">
+                            <div class="order-number">#MP2024-0156</div>
+                            <div class="order-details">Mariscos (1kg) + Batata Frita (2x) + Sumos (2x)</div>
+                            <div class="order-time">Há 18 minutos • Baixa</div>
+                        </div>
+                        <span class="order-status status-ready">Pronto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Management Section -->
+            <div class="menu-table-container">
+                <div class="table-header">
+                    <h3 class="section-title">Gestão do Menu</h3>
+                    <div class="table-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Pesquisar produtos...">
+                        </div>
+                        <a href="novoproduto.html" class="btn-primary-custom">
+                            <i class="fas fa-plus"></i>
+                            Novo Produto
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="category-filter" style="padding: 20px 30px 0;">
+                    <button class="category-btn active">Todos</button>
+                    <button class="category-btn">Mariscos</button>
+                    <button class="category-btn">Acompanhamentos</button>
+                    <button class="category-btn">Bebidas</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="menu-table">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Tipo</th>
+                                <th>Preço/Unidade</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Mariscos (vendidos por peso) -->
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Camarão" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Camarão Grelhado</h5>
+                                            <p>Camarões jumbo grelhados na manteiga com alho</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Marisco</td>
+                                <td>
+                                    <span class="price">MZN 850</span>
+                                    <span class="unit-badge unit-weight">500g</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-popular">Popular</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Peixe" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Peixe Fresco</h5>
+                                            <p>Peixe do dia para moqueca ou grelhado</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Marisco</td>
+                                <td>
+                                    <span class="price">MZN 650</span>
+                                    <span class="unit-badge unit-weight">700g</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-available">Disponível</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Mariscos" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Mix de Mariscos</h5>
+                                            <p>Seleção de mariscos frescos da costa</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Marisco</td>
+                                <td>
+                                    <span class="price">MZN 1100</span>
+                                    <span class="unit-badge unit-weight">1kg</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-available">Disponível</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Acompanhamentos (vendidos por unidade) -->
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Risoto" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Risoto de Mariscos</h5>
+                                            <p>Risoto cremoso com pedaços de mariscos</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Acompanhamento</td>
+                                <td>
+                                    <span class="price">MZN 250</span>
+                                    <span class="unit-badge unit-piece">unidade</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-available">Disponível</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Arroz" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Arroz de Coco</h5>
+                                            <p>Arroz branco cozido no leite de coco</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Acompanhamento</td>
+                                <td>
+                                    <span class="price">MZN 150</span>
+                                    <span class="unit-badge unit-piece">unidade</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-available">Disponível</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                                             alt="Batata" class="product-image">
+                                        <div class="product-details">
+                                            <h5>Batata Frita</h5>
+                                            <p>Batata palha crocante temperada</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Acompanhamento</td>
+                                <td>
+                                    <span class="price">MZN 120</span>
+                                    <span class="unit-badge unit-piece">unidade</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-unavailable">Indisponível</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-edit" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
